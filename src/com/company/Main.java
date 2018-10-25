@@ -10,11 +10,11 @@ public class Main {
         Stats warriorStats = new Stats();
         Warrior abraham = new Warrior(warriorStats);
         warriorStats.initializeWarrior(1);
-        abraham.buffAttack(warriorStats);
-        abraham.levelUpWarrior(warriorStats);
-        abraham.levelUpWarrior(warriorStats);
-        abraham.buffAttack(warriorStats);
-        abraham.attack(warriorStats);
-        abraham.move(15, warriorStats);
+        abraham.buffAttack();
+        abraham.levelUpWarrior();
+        abraham.levelUpWarrior();
+        abraham.buffAttack();
+        abraham.attack(abraham);
+        abraham.move(15);
     }
 }

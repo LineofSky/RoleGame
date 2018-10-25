@@ -3,6 +3,8 @@ package com.company.main.java.game;
 import com.company.main.java.game.skill.BuffAttack;
 import com.company.main.java.game.skill.WarriorsSkillList;
 
+import java.sql.Driver;
+import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,34 +16,48 @@ public class Warrior implements BasicUnit {
     }
 
     @Override
-    public void attack(Stats stats) {
-        stats.setCurrentSP(stats.getCurrentSP() - 30);
+    public Warrior attack(BasicUnit someUnit) {
+        this.stats.setCurrentSP(stats.getCurrentSP() - 30);
         System.out.print("skill is not available");
+        someUnit.position();
+        return this;
     }
 
     @Override
-    public void useSkill(String skill, Stats stats) {
+    public BasicUnit useSkill(String name, Stats stats) throws ClassNotFoundException, NoSuchMethodException {
+        return null;
+    }
+
+    @Override
+    public Warrior useSkill(String skill) {
         BuffAttack buffAttack = new BuffAttack();
         if (availableSkillList.contains(skill)) {
-            buffAttack.useSkill(stats);
+            buffAttack.useSkill();
             System.out.println(skill + " has been activated");
             System.out.println("Your attack is increased to " + stats.getpAtk());
         } else System.out.println(skill + " skill is not available");
+        return this;
     }
 
-    public void buffAttack(Stats stats) {
-        useSkill("BuffAttack", stats);
-    }
-
-    @Override
-    public void defence() {
-
+    public void buffAttack() {
+        useSkill("BuffAttack");
     }
 
     @Override
-    public void move(int steps, Stats stats) {
+    public Warrior defence() {
+        return this;
+    }
+
+    @Override
+    public BasicUnit move(int steps, Stats stats) {
+        return null;
+    }
+
+    @Override
+    public Warrior move(int steps) {
         stats.setCurrentSP(stats.getCurrentSP() - steps);
         System.out.println("Your sp after you moved by " + steps +" is " + stats.getCurrentSP());
+        return this;
     }
 
     @Override
@@ -49,9 +65,9 @@ public class Warrior implements BasicUnit {
 
     }
 
-    public Warrior levelUpWarrior(Stats stats) {
+    public Warrior levelUpWarrior() {
         availableSkillList = new WarriorsSkillList().getAvailableSkillList(stats.getLevel());
-        stats.initializeWarrior(stats.getLevel() +1);
+        initializeWarrior(stats.getLevel() +1);
         System.out.println("Your level is now " + stats.getLevel());
         System.out.println("Your hp is now " + stats.getCurrentHP());
         System.out.println("Your sp " + stats.getCurrentSP());
@@ -59,8 +75,8 @@ public class Warrior implements BasicUnit {
         return this;
     }
 
-    public Warrior initializeWarrior(Stats stats) {
-        stats.initializeWarrior(1);
+    public Warrior initializeWarrior(int level) {
+        stats.initializeWarrior(level);
         return this;
     }
 
