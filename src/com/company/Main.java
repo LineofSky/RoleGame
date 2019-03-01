@@ -7,9 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
         // write your code here
-        Stats warriorStats = new Stats();
-        Warrior abraham = new Warrior(warriorStats);
-        warriorStats.initializeWarrior(1);
+        Warrior abraham = new Warrior();
         abraham.buffAttack();
         abraham.levelUpWarrior();
         abraham.levelUpWarrior();
