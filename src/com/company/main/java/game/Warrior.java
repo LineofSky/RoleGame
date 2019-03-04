@@ -10,8 +10,10 @@ import java.util.List;
 
 public class Warrior implements BasicUnit {
     private List<String> availableSkillList = new ArrayList<>();
+    private Stats stats;
 
-    public Warrior(Stats stats) {
+    public Warrior() {
+        stats = new Stats();
         stats.initializeWarrior(stats.getLevel());
     }
 
@@ -28,7 +30,6 @@ public class Warrior implements BasicUnit {
         return null;
     }
 
-    @Override
     public Warrior useSkill(String skill) {
         BuffAttack buffAttack = new BuffAttack();
         if (availableSkillList.contains(skill)) {
@@ -53,7 +54,6 @@ public class Warrior implements BasicUnit {
         return null;
     }
 
-    @Override
     public Warrior move(int steps) {
         stats.setCurrentSP(stats.getCurrentSP() - steps);
         System.out.println("Your sp after you moved by " + steps +" is " + stats.getCurrentSP());
