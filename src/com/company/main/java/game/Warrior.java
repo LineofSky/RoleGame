@@ -3,16 +3,15 @@ package com.company.main.java.game;
 import com.company.main.java.game.skill.BuffAttack;
 import com.company.main.java.game.skill.WarriorsSkillList;
 
-import java.sql.Driver;
-import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Warrior implements BasicUnit {
     private List<String> availableSkillList = new ArrayList<>();
-
-    public Warrior(Stats stats) {
-        stats.initializeWarrior(stats.getLevel());
+    private Stats stats;
+    public Warrior() {
+        initializeWarrior(1);
     }
 
     @Override
@@ -23,10 +22,10 @@ public class Warrior implements BasicUnit {
         return this;
     }
 
-    @Override
-    public BasicUnit useSkill(String name, Stats stats) throws ClassNotFoundException, NoSuchMethodException {
-        return null;
-    }
+//    @Override
+//    public BasicUnit useSkill() throws ClassNotFoundException, NoSuchMethodException {
+//        return null;
+//    }
 
     @Override
     public Warrior useSkill(String skill) {
@@ -46,11 +45,6 @@ public class Warrior implements BasicUnit {
     @Override
     public Warrior defence() {
         return this;
-    }
-
-    @Override
-    public BasicUnit move(int steps, Stats stats) {
-        return null;
     }
 
     @Override
@@ -76,8 +70,7 @@ public class Warrior implements BasicUnit {
     }
 
     public Warrior initializeWarrior(int level) {
-        stats.initializeWarrior(level);
-        return this;
+        return stats.initializeWarrior(level);
     }
 
 }

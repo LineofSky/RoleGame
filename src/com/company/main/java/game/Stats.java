@@ -76,7 +76,9 @@ public class Stats {
 
     }
 
-    public Stats initializeWarrior(int level) {
+    public Warrior initializeWarrior(int level) {
+        Warrior var = new Warrior();
+
         setCurrentHP(currentHP = baseHitpoints + level * 150);
         setCurrentMP(baseManapoints + level * 5);
         setCurrentSP(baseStaminapoints + level * 10);
@@ -86,7 +88,7 @@ public class Stats {
         setmDef(mDef = 5 + level * 2);
         this.level = level;
 
-        return this;
+        return var;
     }
 
 }
