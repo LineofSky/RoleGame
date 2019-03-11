@@ -3,15 +3,18 @@ package com.company.main.java.game;
 import com.company.main.java.game.skill.BuffAttack;
 import com.company.main.java.game.skill.WarriorsSkillList;
 
+import java.sql.Driver;
+import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class Warrior implements BasicUnit {
     private List<String> availableSkillList = new ArrayList<>();
     private Stats stats;
+
     public Warrior() {
-        initializeWarrior(1);
+        stats = new Stats();
+        stats.initializeWarrior(stats.getLevel());
     }
 
     @Override
@@ -22,12 +25,11 @@ public class Warrior implements BasicUnit {
         return this;
     }
 
-//    @Override
-//    public BasicUnit useSkill() throws ClassNotFoundException, NoSuchMethodException {
-//        return null;
-//    }
-
     @Override
+    public BasicUnit useSkill(String name, Stats stats) throws ClassNotFoundException, NoSuchMethodException {
+        return null;
+    }
+
     public Warrior useSkill(String skill) {
         BuffAttack buffAttack = new BuffAttack();
         if (availableSkillList.contains(skill)) {
@@ -48,6 +50,10 @@ public class Warrior implements BasicUnit {
     }
 
     @Override
+    public BasicUnit move(int steps, Stats stats) {
+        return null;
+    }
+
     public Warrior move(int steps) {
         stats.setCurrentSP(stats.getCurrentSP() - steps);
         System.out.println("Your sp after you moved by " + steps +" is " + stats.getCurrentSP());
@@ -70,7 +76,8 @@ public class Warrior implements BasicUnit {
     }
 
     public Warrior initializeWarrior(int level) {
-        return stats.initializeWarrior(level);
+        stats.initializeWarrior(level);
+        return this;
     }
 
 }
