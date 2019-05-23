@@ -2,17 +2,19 @@ package com.company;
 
 import com.company.main.java.game.Stats;
 import com.company.main.java.game.Warrior;
+import com.company.main.java.game.skill.BuffAttack;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoSuchMethodException, ClassNotFoundException {
         // write your code here
         Warrior abraham = new Warrior();
-        abraham.buffAttack();
+        Warrior devid = new Warrior();
+        abraham.useSkill(new BuffAttack());
         abraham.levelUpWarrior();
         abraham.levelUpWarrior();
-        abraham.buffAttack();
-        abraham.attack(abraham);
+        abraham.useSkill(new BuffAttack());
+//        abraham.attack(devid);
         abraham.move(15);
     }
 }

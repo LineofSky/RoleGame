@@ -2,10 +2,8 @@ package com.company.main.java.game;
 
 public class Stats {
     private int level = 1;
-    private int baseHitpoints = 1000;
-    private int baseManapoints = 100;
-    private int baseStaminapoints = 100;
-    private int pAtk, mAtk, pDdef, mDef, currentHP, currentMP, currentSP;
+    private int pAtk, mAtk, pDdef, mDef, currentHP, currentMP, currentSP, maxHP, maxMP, maxSP, exp;
+    private String name;
 
     public int getLevel() {
         return level;
@@ -38,7 +36,20 @@ public class Stats {
     public int getmDef() {
         return mDef;
     }
+
+    public int getMaxHP() {
+        return maxHP;
+    }
+
+    public int getMaxMP() {
+        return maxMP;
+    }
+
+    public int getMaxSP() {
+        return maxSP;
+    }
     //setters
+
 
     public void setCurrentHP(int currentHP) {
         this.currentHP = currentHP;
@@ -72,23 +83,51 @@ public class Stats {
         this.level = level;
     }
 
+
+    public void setMaxHp(int maxHP) {
+        this.maxHP = maxHP;
+    }
+
+    public void setMaxMP(int maxMP) {
+        this.maxMP = maxMP;
+    }
+
+    public void setMaxSP(int maxSP) {
+        this.maxSP = maxSP;
+    }
+
     public Stats() {
 
     }
 
-    public Warrior initializeWarrior(int level) {
-        Warrior var = new Warrior();
-
-        setCurrentHP(currentHP = baseHitpoints + level * 150);
-        setCurrentMP(baseManapoints + level * 5);
-        setCurrentSP(baseStaminapoints + level * 10);
+    public Stats  initializeWarrior(int level) {
+        setMaxHp(1000 + level * 150);
+        setMaxMP(100 + level * 5);
+        setMaxSP(100 + level * 10);
+        setCurrentHP(maxHP);
+        setCurrentMP(maxMP);
+        setCurrentSP(maxSP);
         setpAtk(100 + level * 25);
         setmAtk(mAtk = 50 + level * 10);
         setpDef(pDdef = 15 + level * 2);
         setmDef(mDef = 5 + level * 2);
         this.level = level;
+        return this;
+    }
 
-        return var;
+    public Stats  initializeMage(int level) {
+        setMaxHp(500 + level * 100);
+        setMaxMP(100 + level * 25);
+        setMaxSP(100 + level * 5);
+        setCurrentHP(maxHP);
+        setCurrentMP(maxMP);
+        setCurrentSP(maxSP);
+        setpAtk(100 + level * 25);
+        setmAtk(mAtk = 100 + level * 30);
+        setpDef(pDdef = 5 + level * 2);
+        setmDef(mDef = 15 + level * 2);
+        this.level = level;
+        return this;
     }
 
 }

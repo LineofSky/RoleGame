@@ -2,18 +2,21 @@ package com.company.main.java.game.skill;
 
 import com.sun.org.glassfish.gmbal.Description;
 
+@Description("Increases P Atk by 15%")
 public class BuffAttack extends Skill {
-    @Description("Increases P Atk by 15%")
-    final String name = "BuffAttack";
+    public String skillName = "BuffAttack";
     int manaCost = 20;
 
-    public void useSkill() {
-        if (canUseSkill(manaCost)) {
-            stats.setpAtk((int) (stats.getpAtk() * 1.15));
-        }
+    @Override
+    protected void applySkill() {
+        useSkillMana(manaCost, stats);
+        stats.setpAtk((int) (stats.getpAtk() * 1.15));
+        stats.setCurrentMP(stats.getCurrentMP() - 20);
     }
 
-    public String getName() {
-        return name;
+    public BuffAttack() {
+        setManaCost(manaCost);
+        setName(name);
     }
+
 }
