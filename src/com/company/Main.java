@@ -13,6 +13,7 @@ public class Main {
         abraham.useSkill(new BuffAttack());
         abraham.levelUpWarrior();
         abraham.levelUpWarrior();
+        abraham.levelUpWarrior();
         abraham.useSkill(new BuffAttack());
 //        abraham.attack(devid);
         abraham.move(15);

@@ -1,12 +1,13 @@
 package com.company.main.java.game;
 
-import com.company.main.java.game.skill.Skill;
 import com.company.main.java.game.skill.BuffAttack;
 import com.company.main.java.game.skill.Skill;
 import com.company.main.java.game.skill.WarriorsSkillList;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class Warrior extends Unit {
     private List<Skill> availableSkillList = new ArrayList<>();
@@ -18,8 +19,9 @@ public class Warrior extends Unit {
     }
 
     public Unit useSkill(Skill skill) throws ClassNotFoundException, NoSuchMethodException {
-        if (availableSkillList.contains(skill)) {
-//            availableSkillList.stream().forEach(s -> s.getName().equals(((BuffAttack) skill).name));
+        List<String> skillList = new ArrayList<>();
+        skillList.addAll(availableSkillList.stream().map(Skill::getName).collect(Collectors.toList()));
+        if (skillList.contains(skill.getName())) {
             skill.useSkill(stats);
             System.out.println(skill + " has been activated");
         } else System.out.println(skill + " skill is not available");

@@ -3,7 +3,6 @@ package com.company.main.java.game.skill;
 import com.company.main.java.game.Stats;
 
 public abstract class Skill {
-    Stats stats;
     String name;
     public int manaCost;
     public boolean isSkillReady = true;
@@ -35,13 +34,13 @@ public abstract class Skill {
         return status;
     }
 
-    protected abstract void applySkill();
+    protected abstract void applySkill(Stats stats);
 
     public void useSkill(Stats stats) {
         if (canUseSkill(manaCost, stats)) {
             isSkillReady = false;
             setSkillReady(false);
-            applySkill();
+            applySkill(stats);
         }
     }
 
@@ -51,10 +50,6 @@ public abstract class Skill {
 
     public String getName() {
         return name;
-    }
-
-    public void setStats(Stats stats) {
-        this.stats = stats;
     }
 
     public void setName(String name) {
