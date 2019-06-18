@@ -1,6 +1,7 @@
 package com.company.main.java.game.skill;
 
 import com.company.main.java.game.Stats;
+import com.company.main.java.game.Unit;
 
 public abstract class Skill {
     String name;
@@ -34,13 +35,23 @@ public abstract class Skill {
         return status;
     }
 
-    protected abstract void applySkill(Stats stats);
+    protected abstract void applySelfSkill(Stats stats);
+
+    protected abstract void applyTargetSkill(Stats stats, Unit unit);
 
     public void useSkill(Stats stats) {
         if (canUseSkill(manaCost, stats)) {
             isSkillReady = false;
             setSkillReady(false);
-            applySkill(stats);
+            applySelfSkill(stats);
+        }
+    }
+
+    public void useSkill(Stats stats, Unit unit) {
+        if (canUseSkill(manaCost, stats)) {
+            isSkillReady = false;
+            setSkillReady(false);
+            applyTargetSkill(stats, unit);
         }
     }
 

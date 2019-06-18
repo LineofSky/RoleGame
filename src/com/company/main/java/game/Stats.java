@@ -2,7 +2,7 @@ package com.company.main.java.game;
 
 public class Stats {
     private int level = 1;
-    private int pAtk, mAtk, pDdef, mDef, currentHP, currentMP, currentSP, maxHP, maxMP, maxSP, exp;
+    private int pAtk, mAtk, pDdef, mDef, currentHP, currentMP, currentSP, maxHP, maxMP, maxSP, exp, movePoints;;
     private String name;
 
     public int getLevel() {
@@ -48,6 +48,11 @@ public class Stats {
     public int getMaxSP() {
         return maxSP;
     }
+
+    public int getMovePoints() {
+        return movePoints;
+    }
+
     //setters
 
 
@@ -94,6 +99,10 @@ public class Stats {
 
     public void setMaxSP(int maxSP) {
         this.maxSP = maxSP;
+    }
+
+    public void setMovePoints(int movePoints) {
+        this.movePoints = movePoints;
     }
 
     public Stats() {
