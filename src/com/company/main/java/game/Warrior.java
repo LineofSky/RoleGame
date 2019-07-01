@@ -1,42 +1,21 @@
 package com.company.main.java.game;
 
-import com.company.main.java.game.skill.Skill;
 import com.company.main.java.game.skill.WarriorsSkillList;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.HashMap;
+import java.util.Random;
 
 public class Warrior extends Unit {
-    private List<Skill> availableSkillList = new ArrayList<>();
     private final int DefaultMovingPointCap = 100;
-    private final boolean attackTypePhicial = true;
+    private final boolean attackTypePhysical = true;
+    HashMap<String,String> randomNames = new HashMap<>();
 
     public Warrior(int level) {
         stats.setLevel(level);
+        this.setName();
         stats.initializeWarrior(stats.getLevel());
         stats.setMovePoints(DefaultMovingPointCap);
         availableSkillList = new WarriorsSkillList().getAvailableSkillList(stats.getLevel());
-    }
-
-    public Unit useSkill(Skill skill) {
-        List<String> skillList = new ArrayList<>();
-        skillList.addAll(availableSkillList.stream().map(Skill::getName).collect(Collectors.toList()));
-        if (skillList.contains(skill.getName())) {
-            skill.useSkill(stats);
-            System.out.println(skill + " has been activated");
-        } else System.out.println(skill + " skill is not available");
-        return this;
-    }
-
-    public Unit useSkill(Skill skill, Unit unit) {
-        List<String> skillList = new ArrayList<>();
-        skillList.addAll(availableSkillList.stream().map(Skill::getName).collect(Collectors.toList()));
-        if (skillList.contains(skill.getName())) {
-            skill.useSkill(stats, unit);
-            System.out.println(skill + " has been activated");
-        } else System.out.println(skill + " skill is not available");
-        return this;
     }
 
     @Override
@@ -57,12 +36,32 @@ public class Warrior extends Unit {
 
     @Override
     public Warrior attack(Unit unit) {
+        double criticalHit = 1;
+        double d = Math.random();
+        if (d < 0.2) {
+            criticalHit = 1.5;
+        }
+
         if (unit.isAlive) {
-            unit.beingAttacked(attackTypePhicial, stats.getpAtk());
+            unit.beingAttacked(attackTypePhysical, (int) (stats.getpAtk() * criticalHit));
             if (!unit.isAlive) {
                 System.out.println(unit.getName() + " was killed.");
             }
         } else System.out.println("The target is already dead");
+        return this;
+    }
+
+    private Warrior setName(){
+        randomNames.put("1", "Pudge");
+        randomNames.put("2", "Saitama");
+        randomNames.put("3", "Ichigo");
+        randomNames.put("4", "Saitama");
+        Random rand = new Random();
+        int number = rand.nextInt(randomNames.size());
+        String itemNumber;
+        itemNumber = Integer.toString(number);
+        setName(randomNames.get(itemNumber));
+        randomNames.replace(itemNumber, randomNames.get(itemNumber) + "2");
         return this;
     }
 }

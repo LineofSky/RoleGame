@@ -1,6 +1,7 @@
 package com.company.main.java.game;
 
 import com.company.main.java.game.skill.BuffAttack;
+import com.company.main.java.game.skill.Fight;
 import com.company.main.java.game.skill.HolyAttack;
 import org.testng.annotations.Test;
 
@@ -27,5 +28,12 @@ public class Tests {
         kisuke.attack(enemy);
         kisuke.attack(enemy);
         kisuke.attack(enemy);
+    }
+
+    @Test
+    public void testFights(){
+        Warrior champion = new Warrior(15);
+        Warrior loser = new Warrior(10);
+        new Fight(champion, loser);
     }
 }

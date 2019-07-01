@@ -8,10 +8,13 @@ import com.sun.org.glassfish.gmbal.Description;
 public class BuffAttack extends Skill {
     public String name = "BuffAttack";
     int manaCost = 20;
+    int CD = 15;
+    int duration = 3;
 
     public BuffAttack() {
         setManaCost(manaCost);
         setName(name);
+        setSkillCD(CD);
     }
 
     @Override

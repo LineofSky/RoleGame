@@ -2,7 +2,8 @@ package com.company.main.java.game;
 
 public class Stats {
     private int level = 1;
-    private int pAtk, mAtk, pDdef, mDef, currentHP, currentMP, currentSP, maxHP, maxMP, maxSP, exp, movePoints;;
+    private int pAtk, mAtk, pDdef, mDef, currentHP, currentMP, currentSP, maxHP, maxMP, maxSP, exp, movePoints;
+    ;
     private String name;
 
     public int getLevel() {
@@ -109,7 +110,7 @@ public class Stats {
 
     }
 
-    public Stats  initializeWarrior(int level) {
+    public Stats initializeWarrior(int level) {
         setMaxHp(1000 + level * 150);
         setMaxMP(100 + level * 5);
         setMaxSP(100 + level * 10);
@@ -124,7 +125,7 @@ public class Stats {
         return this;
     }
 
-    public Stats  initializeMage(int level) {
+    public Stats initializeMage(int level) {
         setMaxHp(500 + level * 100);
         setMaxMP(100 + level * 25);
         setMaxSP(100 + level * 5);

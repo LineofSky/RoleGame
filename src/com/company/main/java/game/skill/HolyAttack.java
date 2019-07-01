@@ -6,10 +6,12 @@ import com.company.main.java.game.Unit;
 public class HolyAttack extends Skill {
     private String name = "HolyAttack";
     private int manaCost = 30;
+    private int CD = 4;
 
     public HolyAttack() {
         setManaCost(manaCost);
         setName(name);
+        setSkillCD(CD);
     }
 
     @Override

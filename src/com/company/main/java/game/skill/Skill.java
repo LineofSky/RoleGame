@@ -5,8 +5,10 @@ import com.company.main.java.game.Unit;
 
 public abstract class Skill {
     String name;
-    public int manaCost;
-    public boolean isSkillReady = true;
+    private int manaCost;
+    private boolean isSkillReady = true;
+    private int skillCD;
+    private int duration;
 
     public void useSkillMana(int manaCost, Stats stats) {
         if (stats.getCurrentMP() > manaCost) {
@@ -63,6 +65,14 @@ public abstract class Skill {
         return name;
     }
 
+    public int getSkillCD() {
+        return skillCD;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -73,5 +83,13 @@ public abstract class Skill {
 
     public void setSkillReady(boolean skillReady) {
         isSkillReady = skillReady;
+    }
+
+    public void setSkillCD(int skillCD) {
+        this.skillCD = skillCD;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 }

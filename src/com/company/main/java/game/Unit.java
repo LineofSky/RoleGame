@@ -1,15 +1,24 @@
 package com.company.main.java.game;
 
+import com.company.main.java.game.skill.Skill;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
+
 public class Unit implements BasicUnit {
     public String name;
     public Boolean isAlive = true;
     public String state;
     Stats stats = new Stats();
+    List<Skill> availableSkillList;
 
 
     @Override
     public BasicUnit attack(Unit unit) {
-        return null;
+        System.out.print("unitAttack");
+        return this;
     }
 
     public BasicUnit defence() {
@@ -19,12 +28,12 @@ public class Unit implements BasicUnit {
     @Override
     public BasicUnit beingAttacked(boolean attackTypePhysical, int damage) {
         if (attackTypePhysical) {
-            stats.setCurrentHP((100 * stats.getCurrentHP() - (damage * (100 - stats.getpDdef())))/100);
+            stats.setCurrentHP((100 * stats.getCurrentHP() - (damage * (100 - stats.getpDdef()))) / 100);
         } else {
             stats.setCurrentHP(stats.getCurrentHP() - damage / stats.getmDef());
         }
 
-        if (stats.getCurrentHP()<1) {
+        if (stats.getCurrentHP() < 1) {
             setAlive(false);
         }
         return null;
@@ -41,7 +50,6 @@ public class Unit implements BasicUnit {
         return this;
     }
 
-
     @Override
     public void position() {
 
@@ -51,7 +59,7 @@ public class Unit implements BasicUnit {
         return name;
     }
 
-    public Boolean getAlive() {
+    public Boolean isAlive() {
         return isAlive;
     }
 
@@ -63,4 +71,29 @@ public class Unit implements BasicUnit {
         isAlive = alive;
     }
 
+    public Unit useSkill(Skill skill) {
+        List<String> skillList = new ArrayList<>();
+        skillList.addAll(availableSkillList.stream().map(Skill::getName).collect(Collectors.toList()));
+        if (skillList.contains(skill.getName())) {
+            skill.useSkill(stats);
+            System.out.println(skill + " has been activated");
+        } else System.out.println(skill + " skill is not available");
+        return this;
+    }
+
+    public Unit useSkill(Skill skill, Unit unit) {
+        List<String> skillList = new ArrayList<>();
+        skillList.addAll(availableSkillList.stream().map(Skill::getName).collect(Collectors.toList()));
+        if (skillList.contains(skill.getName())) {
+            skill.useSkill(stats, unit);
+            System.out.println(skill + " has been activated");
+        } else System.out.println(skill + " skill is not available");
+        return this;
+    }
+
+    public Skill getRandomSkill() {
+        Random rand = new Random();
+        int value = rand.nextInt(availableSkillList.size() - 1);
+        return availableSkillList.get(value);
+    }
 }
