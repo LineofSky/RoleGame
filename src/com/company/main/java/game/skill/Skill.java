@@ -1,14 +1,17 @@
 package com.company.main.java.game.skill;
 
-import com.company.main.java.game.Stats;
-import com.company.main.java.game.Unit;
+import com.company.Units.Stats;
+import com.company.Units.Unit;
 
 public abstract class Skill {
     String name;
     private int manaCost;
     private boolean isSkillReady = true;
-    private int skillCD;
+    private int skillIsReadyIn;
+    private int skillCd;
     private int duration;
+    private boolean skillAffects;
+    protected boolean hasDuration = false;
 
     public void useSkillMana(int manaCost, Stats stats) {
         if (stats.getCurrentMP() > manaCost) {
@@ -45,6 +48,7 @@ public abstract class Skill {
         if (canUseSkill(manaCost, stats)) {
             isSkillReady = false;
             setSkillReady(false);
+            reduceCDBy(skillCd);
             applySelfSkill(stats);
         }
     }
@@ -53,9 +57,25 @@ public abstract class Skill {
         if (canUseSkill(manaCost, stats)) {
             isSkillReady = false;
             setSkillReady(false);
+            reduceCDBy(skillCd);
             applyTargetSkill(stats, unit);
         }
     }
+
+    public void reduceCDBy(int timer) {
+        this.skillIsReadyIn = skillIsReadyIn - timer;
+    }
+
+    public void reduceDurationBy(int timer) {
+        if (hasDuration == true) {
+            this.duration = duration - timer;
+            if (duration == 0) {
+                effectHasEnded();
+            }
+        }
+    }
+
+    protected abstract void effectHasEnded();
 
     public int getManaCost() {
         return manaCost;
@@ -65,8 +85,8 @@ public abstract class Skill {
         return name;
     }
 
-    public int getSkillCD() {
-        return skillCD;
+    public int getSkillIsReadyIn() {
+        return skillIsReadyIn;
     }
 
     public int getDuration() {
@@ -85,11 +105,11 @@ public abstract class Skill {
         isSkillReady = skillReady;
     }
 
-    public void setSkillCD(int skillCD) {
-        this.skillCD = skillCD;
+    public void setSkillCd(int cd) {
+        this.skillCd = cd;
     }
 
-    public void setDuration(int duration) {
-        this.duration = duration;
+    protected void setDuration(int dur) {
+        this.duration = dur;
     }
 }

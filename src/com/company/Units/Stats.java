@@ -1,4 +1,4 @@
-package com.company.main.java.game;
+package com.company.Units;
 
 public class Stats {
     private int level = 1;

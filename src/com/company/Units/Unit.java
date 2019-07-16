@@ -1,6 +1,7 @@
-package com.company.main.java.game;
+package com.company.Units;
 
 import com.company.main.java.game.skill.Skill;
+import com.company.main.java.game.skill.SkillEffect;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +13,8 @@ public class Unit implements BasicUnit {
     public Boolean isAlive = true;
     public String state;
     Stats stats = new Stats();
-    List<Skill> availableSkillList;
-
+    public List<Skill> availableSkillList;
+    public List<SkillEffect> effects;
 
     @Override
     public BasicUnit attack(Unit unit) {

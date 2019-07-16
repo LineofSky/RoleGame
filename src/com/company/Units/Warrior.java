@@ -1,4 +1,4 @@
-package com.company.main.java.game;
+package com.company.Units;
 
 import com.company.main.java.game.skill.WarriorsSkillList;
 
@@ -55,7 +55,7 @@ public class Warrior extends Unit {
         randomNames.put("1", "Pudge");
         randomNames.put("2", "Saitama");
         randomNames.put("3", "Ichigo");
-        randomNames.put("4", "Saitama");
+        randomNames.put("4", "Luffy");
         Random rand = new Random();
         int number = rand.nextInt(randomNames.size());
         String itemNumber;

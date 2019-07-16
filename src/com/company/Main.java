@@ -1,6 +1,6 @@
 package com.company;
 
-import com.company.main.java.game.Warrior;
+import com.company.Units.Warrior;
 import com.company.main.java.game.skill.BuffAttack;
 
 public class Main {

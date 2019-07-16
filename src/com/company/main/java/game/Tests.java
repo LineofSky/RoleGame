@@ -1,7 +1,7 @@
 package com.company.main.java.game;
 
+import com.company.Units.Warrior;
 import com.company.main.java.game.skill.BuffAttack;
-import com.company.main.java.game.skill.Fight;
 import com.company.main.java.game.skill.HolyAttack;
 import org.testng.annotations.Test;
 

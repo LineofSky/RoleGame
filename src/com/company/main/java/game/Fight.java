@@ -1,6 +1,6 @@
-package com.company.main.java.game.skill;
+package com.company.main.java.game;
 
-import com.company.main.java.game.Unit;
+import com.company.Units.Unit;
 
 public class Fight {
 
@@ -12,6 +12,7 @@ public class Fight {
             round++;
             performAction(controlledUnit, enemyUnit);
             performAction(enemyUnit, controlledUnit);
+//            this instanceof Skill ? ((Skill) this) : null;
         } while (controlledUnit.isAlive() && enemyUnit.isAlive());
     }
 
@@ -21,9 +22,17 @@ public class Fight {
             unit.attack(target);
         } else if (d > 0.6) {
             unit.defence();
-        } else if ( d > 0.2 && d < 0.6 ){
+        } else if (d > 0.2 && d < 0.6) {
             unit.useSkill(unit.getRandomSkill(), target);
         }
+        unit.availableSkillList.forEach(skill -> {
+            skill.reduceCDBy( 1);
+            skill.reduceDurationBy(1);
+        });
         System.out.println("Fin");
+    }
+
+    public void checkSkillEffects(Unit unit){
+        unit.effects.forEach(ad->ad.updateSkillStatus());
     }
 }
